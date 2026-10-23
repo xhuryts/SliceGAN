@@ -28,7 +28,7 @@ def train(pth, imtype, datatype, real_data, Disc, Gen, nc, l, nz, sf):
         isotropic = False
 
     print('Loading Dataset...')
-    dataset_xyz = preprocessing.batch(real_data, datatype, l, sf)
+    datasetxyz = preprocessing.batch(real_data, datatype, l, sf)
 
     ## Constants for NNs
     matplotlib.use('Agg')
@@ -53,11 +53,11 @@ def train(pth, imtype, datatype, real_data, Disc, Gen, nc, l, nz, sf):
     print(device, " will be used.\n")
 
     # D trained using different data for x, y and z directions
-    dataloaderx = torch.utils.data.DataLoader(dataset_xyz[0], batch_size=batch_size,
+    dataloaderx = torch.utils.data.DataLoader(datasetxyz[0], batch_size=batch_size,
                                               shuffle=True, num_workers=workers)
-    dataloadery = torch.utils.data.DataLoader(dataset_xyz[1], batch_size=batch_size,
+    dataloadery = torch.utils.data.DataLoader(datasetxyz[1], batch_size=batch_size,
                                               shuffle=True, num_workers=workers)
-    dataloaderz = torch.utils.data.DataLoader(dataset_xyz[2], batch_size=batch_size,
+    dataloaderz = torch.utils.data.DataLoader(datasetxyz[2], batch_size=batch_size,
                                               shuffle=True, num_workers=workers)
 
     # Create the Genetator network
